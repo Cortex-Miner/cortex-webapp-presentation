@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Hero from './slides/HeroSlide';
@@ -30,6 +30,20 @@ const Slideshow = () => {
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      } else if (e.key === 'ArrowRight') {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [slides.length]);
 
   const CurrentSlideComponent = slides[currentSlide].component;
 
@@ -91,19 +105,5 @@ const Slideshow = () => {
     </div>
   );
 };
-
-// Keyboard navigation
-React.useEffect(() => {
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') {
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    } else if (e.key === 'ArrowRight') {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }
-  };
-
-  window.addEventListener('keydown', handleKeyPress);
-  return () => window.removeEventListener('keydown', handleKeyPress);
-}, []);
 
 export default Slideshow;
