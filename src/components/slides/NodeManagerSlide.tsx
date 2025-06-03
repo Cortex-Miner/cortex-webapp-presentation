@@ -36,7 +36,7 @@ const NodeManagerSlide = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {features.map((feature, index) => (
             <Card 
               key={index} 
@@ -53,9 +53,12 @@ const NodeManagerSlide = () => {
         </div>
 
         {/* Screenshot area */}
-        <div className="mt-12 bg-slate-800/30 border-2 border-dashed border-slate-600 rounded-lg p-8 text-center">
-          <p className="text-slate-400 text-lg">Screenshot Area</p>
-          <p className="text-slate-500 text-sm mt-2">Node Manager UI Demo</p>
+        <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
+          <img 
+            src="/lovable-uploads/4bfdf81a-c30f-4525-b12d-877bb8edaac2.png" 
+            alt="Ergo Node Manager UI" 
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-2xl"
+          />
         </div>
       </div>
     </section>

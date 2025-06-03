@@ -70,9 +70,12 @@ const MinerManagerSlide = () => {
         </div>
 
         {/* Screenshot area */}
-        <div className="bg-slate-800/30 border-2 border-dashed border-slate-600 rounded-lg p-8 text-center">
-          <p className="text-slate-400 text-lg">Screenshot Area</p>
-          <p className="text-slate-500 text-sm mt-2">Miner Control Panel Demo</p>
+        <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
+          <img 
+            src="/lovable-uploads/5d4faa13-d154-42e6-8843-24b3811607c8.png" 
+            alt="Miner Control Panel UI" 
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-2xl"
+          />
         </div>
       </div>
     </section>

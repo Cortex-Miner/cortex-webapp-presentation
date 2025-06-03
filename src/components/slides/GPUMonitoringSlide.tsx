@@ -58,9 +58,12 @@ const GPUMonitoringSlide = () => {
         </div>
 
         {/* Screenshot area */}
-        <div className="bg-slate-800/30 border-2 border-dashed border-slate-600 rounded-lg p-8 text-center">
-          <p className="text-slate-400 text-lg">Screenshot Area</p>
-          <p className="text-slate-500 text-sm mt-2">GPU Monitoring Dashboard</p>
+        <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
+          <img 
+            src="/lovable-uploads/a26fa6d0-5951-4282-a841-851f719cbf22.png" 
+            alt="GPU Monitoring Dashboard" 
+            className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
+          />
         </div>
       </div>
     </section>
