@@ -2,21 +2,31 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Hero from './slides/HeroSlide';
-import Features from './slides/FeaturesSlide';
-import AIOptimization from './slides/AIOptimizationSlide';
-import TechStack from './slides/TechStackSlide';
-import Conclusion from './slides/ConclusionSlide';
+import TitleSlide from './slides/TitleSlide';
+import ProjectPurposeSlide from './slides/ProjectPurposeSlide';
+import OriginalGoalsSlide from './slides/OriginalGoalsSlide';
+import CurrentArchitectureSlide from './slides/CurrentArchitectureSlide';
+import NodeManagerSlide from './slides/NodeManagerSlide';
+import MinerManagerSlide from './slides/MinerManagerSlide';
+import GPUMonitoringSlide from './slides/GPUMonitoringSlide';
+import AIIntegrationSlide from './slides/AIIntegrationSlide';
+import ProgressSummarySlide from './slides/ProgressSummarySlide';
+import FinalSlide from './slides/FinalSlide';
 
 const Slideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
-    { component: Hero, title: "Cortex Introduction" },
-    { component: Features, title: "Core Features" },
-    { component: AIOptimization, title: "AI Optimization" },
-    { component: TechStack, title: "Technology Stack" },
-    { component: Conclusion, title: "Project Goals" }
+    { component: TitleSlide, title: "Title" },
+    { component: ProjectPurposeSlide, title: "Project Purpose" },
+    { component: OriginalGoalsSlide, title: "Original Goals" },
+    { component: CurrentArchitectureSlide, title: "Current Architecture" },
+    { component: NodeManagerSlide, title: "Node Manager" },
+    { component: MinerManagerSlide, title: "Miner Manager" },
+    { component: GPUMonitoringSlide, title: "GPU Monitoring" },
+    { component: AIIntegrationSlide, title: "AI Integration" },
+    { component: ProgressSummarySlide, title: "Progress Summary" },
+    { component: FinalSlide, title: "Conclusion" }
   ];
 
   const nextSlide = () => {
