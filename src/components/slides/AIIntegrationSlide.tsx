@@ -1,36 +1,52 @@
 
 import React from 'react';
 import { Card } from "@/components/ui/card";
-import { Brain, Database, RotateCcw, Wrench } from 'lucide-react';
+import { CheckCircle, Brain, Database, RotateCcw, Wrench, Zap } from 'lucide-react';
 
 const AIIntegrationSlide = () => {
-  const features = [
-    {
-      icon: Brain,
-      emoji: "🧠",
-      text: "FastAPI AI module: Receives GPU + mining stats",
-      status: "initiated"
-    },
+  const completedFeatures = [
     {
       icon: Database,
       emoji: "📊",
-      text: "Logs SQL-compatible dataset for future training",
-      status: "initiated"
-    }
-  ];
-
-  const plannedFeatures = [
-    {
-      icon: RotateCcw,
-      text: "Nonce partitioning (real-time adaptation)"
-    },
-    {
-      icon: Wrench,
-      text: "Efficiency tuning (fan, power, clock)"
+      text: "Real mining job, GPU, and share data collection in logs/nonces.jsonl"
     },
     {
       icon: Brain,
-      text: "Health monitoring (anomaly detection)"
+      emoji: "🤖",
+      text: "Random Forest ML model trained on historic mining data"
+    },
+    {
+      icon: Zap,
+      emoji: "⚡",
+      text: "Real-time nonce range predictions based on GPU stats & difficulty"
+    },
+    {
+      icon: RotateCcw,
+      emoji: "🔄",
+      text: "Live AI recommendations with confidence scoring"
+    }
+  ];
+
+  const pipelineSteps = [
+    {
+      step: "1",
+      title: "Data Collection",
+      description: "Miner logs all attempts, stats, and share results"
+    },
+    {
+      step: "2", 
+      title: "Model Training",
+      description: "train.py processes JSONL and trains Random Forest on 5+ variables"
+    },
+    {
+      step: "3",
+      title: "Real-time Prediction",
+      description: "ai-service.py loads model and predicts nonce range success likelihood"
+    },
+    {
+      step: "4",
+      title: "Dashboard Integration",
+      description: "Live recommendations, confidence, and stats displayed"
     }
   ];
 
@@ -42,24 +58,29 @@ const AIIntegrationSlide = () => {
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-cyan-500 bg-clip-text text-transparent">
               AI Integration Framework
             </h2>
-            <span className="text-yellow-400 font-bold text-lg">(🚧 Initiated)</span>
+            <CheckCircle className="w-8 h-8 text-green-400" />
+            <span className="text-green-400 font-bold text-xl">Complete</span>
           </div>
+          <p className="text-xl text-gray-300">Data-Driven ML Model, Not Rules</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Current Implementation</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">
+              <span className="text-2xl mr-2">✅</span>
+              Completed Implementation
+            </h3>
             <div className="space-y-4">
-              {features.map((feature, index) => (
+              {completedFeatures.map((feature, index) => (
                 <Card 
                   key={index} 
-                  className="bg-slate-800/60 border-slate-600 hover:border-purple-500/50 transition-all duration-300 p-6 group"
+                  className="bg-slate-800/60 border-slate-600 hover:border-green-500/50 transition-all duration-300 p-6 group"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
                       {feature.emoji}
                     </span>
-                    <feature.icon className="w-6 h-6 text-purple-400" />
+                    <feature.icon className="w-6 h-6 text-green-400" />
                     <p className="text-lg text-gray-300">{feature.text}</p>
                   </div>
                 </Card>
@@ -70,17 +91,22 @@ const AIIntegrationSlide = () => {
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">
               <span className="text-2xl mr-2">🔄</span>
-              Planned Features
+              ML Pipeline
             </h3>
             <div className="space-y-4">
-              {plannedFeatures.map((feature, index) => (
+              {pipelineSteps.map((step, index) => (
                 <Card 
                   key={index} 
-                  className="bg-slate-800/60 border-slate-600 hover:border-cyan-500/50 transition-all duration-300 p-6 group"
+                  className="bg-slate-800/60 border-slate-600 hover:border-purple-500/50 transition-all duration-300 p-4 group"
                 >
-                  <div className="flex items-center gap-4">
-                    <feature.icon className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
-                    <p className="text-lg text-gray-300">{feature.text}</p>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                      {step.step}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-white text-lg">{step.title}</h4>
+                      <p className="text-gray-300 text-sm">{step.description}</p>
+                    </div>
                   </div>
                 </Card>
               ))}
@@ -89,9 +115,13 @@ const AIIntegrationSlide = () => {
         </div>
 
         {/* Screenshot area */}
-        <div className="bg-slate-800/30 border-2 border-dashed border-slate-600 rounded-lg p-8 text-center">
-          <p className="text-slate-400 text-lg">Screenshot Area</p>
-          <p className="text-slate-500 text-sm mt-2">AI Training Dashboard</p>
+        <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
+          <img 
+            src="/lovable-uploads/f103d373-752b-459e-ae03-7759fa953482.png" 
+            alt="AI Nonce Insights Dashboard" 
+            className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
+          />
+          <p className="text-cyan-400 text-sm mt-2 font-medium">Live AI Nonce Insights with 95% Confidence</p>
         </div>
       </div>
     </section>
