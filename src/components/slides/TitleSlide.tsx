@@ -19,7 +19,7 @@ const TitleSlide = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-xl"></div>
             <img 
-              src="/lovable-uploads/97c851ab-fa03-49d3-8098-22f2f90bf9a9.png" 
+              src="/lovable-uploads/beed117c-2d72-4a61-9235-bb0ced3d3258.png" 
               alt="Cortex Logo" 
               className="relative w-32 h-32 object-contain drop-shadow-2xl animate-fade-in"
             />
