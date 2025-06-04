@@ -1,30 +1,25 @@
 
 import React from 'react';
 import { Card } from "@/components/ui/card";
-import { Settings, Globe, Brain, Cpu } from 'lucide-react';
 
 const CurrentArchitectureSlide = () => {
   const components = [
     {
-      icon: Settings,
       title: "Backend",
       description: "Node/Stratum/GPU manager (Node.js + Express)",
       emoji: "⚙️"
     },
     {
-      icon: Globe,
       title: "Frontend",
       description: "React dashboard with live controls",
       emoji: "🌐"
     },
     {
-      icon: Brain,
       title: "AI Service (FastAPI)",
       description: "Training & logic engine for optimization",
       emoji: "🧠"
     },
     {
-      icon: Cpu,
       title: "CUDA Miner",
       description: "Native GPU mining binary (built from scratch)",
       emoji: "🧱"
@@ -50,7 +45,6 @@ const CurrentArchitectureSlide = () => {
               <div className="text-center">
                 <div className="flex justify-center items-center gap-3 mb-4">
                   <span className="text-3xl">{component.emoji}</span>
-                  <component.icon className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{component.title}</h3>
                 <p className="text-gray-300 leading-relaxed">{component.description}</p>

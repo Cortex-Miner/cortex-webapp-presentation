@@ -1,27 +1,23 @@
 
 import React from 'react';
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Thermometer, Wrench, Brain, AlertTriangle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const GPUMonitoringSlide = () => {
   const features = [
     {
-      icon: Thermometer,
       emoji: "🧊",
       text: "Real-time temperature, power, fan speed, clock readings"
     },
     {
-      icon: Wrench,
       emoji: "🔧",
       text: "Overclocking API via nvidia-smi and nvidia-settings"
     },
     {
-      icon: Brain,
       emoji: "🧠",
       text: "FastAPI service records telemetry for ML model training"
     },
     {
-      icon: AlertTriangle,
       emoji: "⚠️",
       text: "Some Linux restrictions exist for fan control without X"
     }
@@ -50,7 +46,6 @@ const GPUMonitoringSlide = () => {
                 <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
                   {feature.emoji}
                 </span>
-                <feature.icon className="w-6 h-6 text-green-400" />
                 <p className="text-lg text-gray-300">{feature.text}</p>
               </div>
             </Card>
@@ -60,7 +55,7 @@ const GPUMonitoringSlide = () => {
         {/* Screenshot area */}
         <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
           <img 
-            src="/lovable-uploads/a26fa6d0-5951-4282-a841-851f719cbf22.png" 
+            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2369&q=80" 
             alt="GPU Monitoring Dashboard" 
             className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
           />

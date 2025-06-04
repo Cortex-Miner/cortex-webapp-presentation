@@ -5,13 +5,60 @@ import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 
 const ProgressSummarySlide = () => {
   const progressItems = [
-    { feature: "CLI CUDA Miner (Solo)", status: "Done", icon: CheckCircle, color: "text-green-400", emoji: "✅" },
-    { feature: "Node Manager (Mainnet/Testnet)", status: "Done", icon: CheckCircle, color: "text-green-400", emoji: "✅" },
-    { feature: "GPU Monitoring + Logging", status: "Done", icon: CheckCircle, color: "text-green-400", emoji: "✅" },
-    { feature: "Web UI for control", status: "WIP", icon: AlertTriangle, color: "text-yellow-400", emoji: "⚠️" },
-    { feature: "Mining directly to node (Testnet)", status: "Not Yet", icon: XCircle, color: "text-red-400", emoji: "🚫" },
-    { feature: "Stratum Job Handling", status: "In Progress", icon: AlertTriangle, color: "text-yellow-400", emoji: "⚠️" },
-    { feature: "AI Feedback Loop", status: "In Design", icon: XCircle, color: "text-red-400", emoji: "🚫" }
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "Node Manager + Ergo Node Deployment",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "GPU Monitoring with nvidia-smi integration",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "CUDA mining kernel development",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "Pool mining with Stratum protocol",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "Data-driven AI optimization (Random Forest)",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "Web UI Dashboard",
+      color: "text-green-400"
+    },
+    {
+      status: 'complete',
+      icon: CheckCircle,
+      text: "AI Feedback Loop with live recommendations",
+      color: "text-green-400"
+    },
+    {
+      status: 'partial',
+      icon: AlertTriangle,
+      text: "Share submission optimization",
+      color: "text-yellow-400"
+    },
+    {
+      status: 'incomplete',
+      icon: XCircle,
+      text: "Advanced overclocking automation",
+      color: "text-red-400"
+    }
   ];
 
   return (
@@ -21,38 +68,31 @@ const ProgressSummarySlide = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
             Progress Summary
           </h2>
+          <p className="text-xl text-gray-300">ErgoHack 10 Achievements</p>
         </div>
         
-        <Card className="bg-slate-800/60 border-slate-600 p-8">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-600">
-                  <th className="text-left py-4 px-4 text-xl font-bold text-cyan-400">Feature</th>
-                  <th className="text-center py-4 px-4 text-xl font-bold text-cyan-400">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {progressItems.map((item, index) => (
-                  <tr key={index} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl">{item.emoji}</span>
-                        <span className="text-lg text-gray-300">{item.feature}</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        <item.icon className={`w-5 h-5 ${item.color}`} />
-                        <span className={`font-medium ${item.color}`}>{item.status}</span>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="space-y-4">
+          {progressItems.map((item, index) => (
+            <Card 
+              key={index} 
+              className="bg-slate-800/60 border-slate-600 hover:border-cyan-500/50 transition-all duration-300 p-6"
+            >
+              <div className="flex items-center gap-4">
+                <item.icon className={`w-6 h-6 ${item.color}`} />
+                <p className="text-lg text-gray-300">{item.text}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-6">
+            <h3 className="text-2xl font-bold text-white mb-4">Key Achievement</h3>
+            <p className="text-xl text-cyan-400 font-semibold">
+              Successfully pivoted from testnet solo mining to production-ready pool mining with AI optimization
+            </p>
           </div>
-        </Card>
+        </div>
       </div>
     </section>
   );

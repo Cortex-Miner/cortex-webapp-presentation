@@ -1,27 +1,23 @@
 
 import React from 'react';
 import { Card } from "@/components/ui/card";
-import { CheckCircle, Brain, Database, RotateCcw, Wrench, Zap } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const AIIntegrationSlide = () => {
   const completedFeatures = [
     {
-      icon: Database,
       emoji: "📊",
       text: "Real mining job, GPU, and share data collection in logs/nonces.jsonl"
     },
     {
-      icon: Brain,
       emoji: "🤖",
       text: "Random Forest ML model trained on historic mining data"
     },
     {
-      icon: Zap,
       emoji: "⚡",
       text: "Real-time nonce range predictions based on GPU stats & difficulty"
     },
     {
-      icon: RotateCcw,
       emoji: "🔄",
       text: "Live AI recommendations with confidence scoring"
     }
@@ -80,7 +76,6 @@ const AIIntegrationSlide = () => {
                     <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
                       {feature.emoji}
                     </span>
-                    <feature.icon className="w-6 h-6 text-green-400" />
                     <p className="text-lg text-gray-300">{feature.text}</p>
                   </div>
                 </Card>

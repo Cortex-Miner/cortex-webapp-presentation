@@ -30,10 +30,10 @@ const OriginalGoalsSlide = () => {
       color: "text-red-400"
     },
     {
-      status: 'incomplete',
-      icon: XCircle,
+      status: 'partial',
+      icon: AlertTriangle,
       text: "AI-based GPU tuning and nonce optimization",
-      color: "text-red-400"
+      color: "text-yellow-400"
     }
   ];
 
