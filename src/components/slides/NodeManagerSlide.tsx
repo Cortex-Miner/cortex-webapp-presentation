@@ -47,7 +47,7 @@ const NodeManagerSlide = () => {
         {/* Screenshot area */}
         <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
           <img 
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2369&q=80" 
+            src="/lovable-uploads/4bfdf81a-c30f-4525-b12d-877bb8edaac2.png" 
             alt="Ergo Node Manager UI" 
             className="w-full max-w-4xl mx-auto rounded-lg shadow-2xl"
           />

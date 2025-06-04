@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github, Users, Target } from 'lucide-react';
+import { Github, Users, Target, Heart } from 'lucide-react';
 
 const FinalSlide = () => {
   return (
@@ -36,7 +36,15 @@ const FinalSlide = () => {
           <div className="flex flex-col items-center p-6 bg-slate-800/30 rounded-lg border border-blue-500/20">
             <Github className="w-12 h-12 text-blue-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Open Source</h3>
-            <p className="text-gray-300 text-center">Fully transparent with community auditing and collaboration</p>
+            <p className="text-gray-300 text-center mb-4">Fully transparent with community auditing and collaboration</p>
+            <a 
+              href="https://github.com/orgs/Cortex-Miner/repositories" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 underline text-sm"
+            >
+              github.com/orgs/Cortex-Miner/repositories
+            </a>
           </div>
           
           <div className="flex flex-col items-center p-6 bg-slate-800/30 rounded-lg border border-purple-500/20">
@@ -46,30 +54,16 @@ const FinalSlide = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div className="bg-slate-800/30 rounded-lg p-6 border border-blue-500/20">
-            <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
-              <Github className="w-6 h-6" />
-              GitHub Repository
-            </h3>
-            <a 
-              href="https://github.com/Arohbe" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 underline text-lg"
-            >
-              github.com/Arohbe
-            </a>
-          </div>
-          
-          <div className="bg-slate-800/30 rounded-lg p-6 border border-purple-500/20">
-            <h3 className="text-xl font-bold text-purple-400 mb-4">Donations</h3>
-            <div className="bg-slate-900/50 rounded p-3 border border-slate-600">
-              <p className="text-gray-300 text-sm mb-2">ERG Address:</p>
-              <code className="text-cyan-400 text-xs break-all">
-                9h3dCuaU9BkyriZi2EG4xDagckZ1vGiT8xpXwdvvGtWkH9FnhgZ
-              </code>
-            </div>
+        <div className="bg-slate-800/30 rounded-lg p-6 border border-red-500/20 mb-8">
+          <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center justify-center gap-2">
+            <Heart className="w-6 h-6" />
+            Donations
+          </h3>
+          <div className="bg-slate-900/50 rounded p-3 border border-slate-600">
+            <p className="text-gray-300 text-sm mb-2">ERG Address:</p>
+            <code className="text-cyan-400 text-xs break-all">
+              9h3dCuaU9BkyriZi2EG4xDagckZ1vGiT8xpXwdvvGtWkH9FnhgZ
+            </code>
           </div>
         </div>
 

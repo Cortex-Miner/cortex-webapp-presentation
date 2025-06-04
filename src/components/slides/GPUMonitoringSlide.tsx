@@ -55,7 +55,7 @@ const GPUMonitoringSlide = () => {
         {/* Screenshot area */}
         <div className="bg-slate-800/30 border border-slate-600 rounded-lg p-4 text-center">
           <img 
-            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2369&q=80" 
+            src="/lovable-uploads/5d4faa13-d154-42e6-8843-24b3811607c8.png" 
             alt="GPU Monitoring Dashboard" 
             className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
           />
