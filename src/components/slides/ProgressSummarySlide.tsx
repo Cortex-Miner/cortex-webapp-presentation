@@ -85,10 +85,9 @@ const ProgressSummarySlide = () => {
           ))}
         </div>
 
-     
-        </div>
-      </div>
-    </section>
+       
+          </div>
+          </section>
   );
 };
 
