@@ -25,7 +25,7 @@ const ProgressSummarySlide = () => {
     },
     {
       status: 'complete',
-      icon: CheckCircle,
+      icon: AlertTriangle,
       text: "Pool mining with Stratum protocol",
       color: "text-green-400"
     },
@@ -85,13 +85,7 @@ const ProgressSummarySlide = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="bg-slate-800/60 border border-slate-600 rounded-lg p-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Key Achievement</h3>
-            <p className="text-xl text-cyan-400 font-semibold">
-              Successfully pivoted from testnet solo mining to production-ready pool mining with AI optimization
-            </p>
-          </div>
+     
         </div>
       </div>
     </section>
