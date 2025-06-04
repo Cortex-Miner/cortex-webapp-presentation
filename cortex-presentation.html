@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortex - AI-Optimized GPU Miner for Ergo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #22d3ee, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #22d3ee, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #22d3ee;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #22d3ee;
+            transform: translateY(-2px);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #475569;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+
+        .status-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .complete { color: #22c55e; }
+        .partial { color: #eab308; }
+        .incomplete { color: #ef4444; }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin: 0.25rem;
+            color: #22d3ee;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #475569;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #22d3ee;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(34, 211, 238, 0.2);
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #22d3ee;
+            transform: scale(1.25);
+        }
+
+        .counter {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #475569;
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            color: #22d3ee;
+            font-weight: 500;
+        }
+
+        .keyboard-hint {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .screenshot {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .donation-box {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .donation-address {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            word-break: break-all;
+            color: #22d3ee;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .slide { padding: 1rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide.active .slide-content {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-content">
+                <img src="public/lovable-uploads/beed117c-2d72-4a61-9235-bb0ced3d3258.png" alt="Cortex Logo" class="logo">
+                <h1>CORTEX</h1>
+                <p class="subtitle">AI-Optimized, Open GPU Miner for Ergo</p>
+                <div class="description">
+                    <p>💡 An Ergohack 10 Project by Arohbe</p>
+                    <p>🚀 Bridging performance, transparency, and intelligent optimization in mining</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Project Purpose -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>What is Cortex?</h2>
+                <p class="description">Cortex is a next-gen open-source CUDA GPU miner for the Ergo blockchain, focused on:</p>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>🛡️ Transparency & auditability</h3>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Real-time GPU control</h3>
+                    </div>
+                    <div class="card">
+                        <h3>🧠 AI-powered mining optimization</h3>
+                    </div>
+                    <div class="card">
+                        <h3>🌐 Full Stratum & solo node mining support</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Original Goals -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Original Goals</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>Solo CLI CUDA Miner</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>Node deployment via backend + UI</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon partial">⚠</span>
+                        <span>Basic Dashboard UI with node/miner control</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon incomplete">✗</span>
+                        <span>Testnet block mining directly via UI</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon partial">⚠</span>
+                        <span>AI-based GPU tuning and nonce optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Current Architecture -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Current Architecture</h2>
+                <p class="subtitle">Modular System Components</p>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>⚙️ Backend</h3>
+                        <p>Node/Stratum/GPU manager (Node.js + Express)</p>
+                    </div>
+                    <div class="card">
+                        <h3>🌐 Frontend</h3>
+                        <p>React dashboard with live controls</p>
+                    </div>
+                    <div class="card">
+                        <h3>🧠 AI Service (FastAPI)</h3>
+                        <p>Training & logic engine for optimization</p>
+                    </div>
+                    <div class="card">
+                        <h3>🧱 CUDA Miner</h3>
+                        <p>Native GPU mining binary (built from scratch)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Node Manager -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Node Manager <span class="complete">✓ Complete</span></h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>🎛 Deploys Ergo nodes (testnet/mainnet) via UI</h3>
+                    </div>
+                    <div class="card">
+                        <h3>📝 Supports live config editing, version selection</h3>
+                    </div>
+                </div>
+                <img src="public/lovable-uploads/4bfdf81a-c30f-4525-b12d-877bb8edaac2.png" alt="Ergo Node Manager UI" class="screenshot">
+            </div>
+        </div>
+
+        <!-- Slide 6: Miner Manager -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Miner Manager <span class="partial">(Pivoted to Pool Mining ✓)</span></h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>🎮 Web-Based Miner Control Panel</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>• Start/Stop miner from UI</li>
+                            <li>• Toggle between Solo and Pool modes (default: Pool)</li>
+                            <li>• Live status: accepted/rejected shares, GPU stats, logs</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🔄 Pivot to Pool Mining</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li class="incomplete">❌ Testnet node mining was unreliable due to sync issues</li>
+                            <li class="complete">✅ Switched focus to Stratum-based pool mining</li>
+                        </ul>
+                    </div>
+                </div>
+                <img src="public/lovable-uploads/5d4faa13-d154-42e6-8843-24b3811607c8.png" alt="Miner Control Panel UI" class="screenshot">
+            </div>
+        </div>
+
+        <!-- Slide 7: GPU Monitoring -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>GPU Monitoring <span class="complete">✓ Complete</span></h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="card">
+                        <h3>🧊 Real-time temperature, power, fan speed, clock readings</h3>
+                    </div>
+                    <div class="card">
+                        <h3>🔧 Overclocking API via nvidia-smi and nvidia-settings</h3>
+                    </div>
+                    <div class="card">
+                        <h3>🧠 FastAPI service records telemetry for ML model training</h3>
+                    </div>
+                    <div class="card">
+                        <h3>⚠️ Some Linux restrictions exist for fan control without X</h3>
+                    </div>
+                </div>
+                <img src="public/lovable-uploads/5d4faa13-d154-42e6-8843-24b3811607c8.png" alt="GPU Monitoring Dashboard" class="screenshot">
+            </div>
+        </div>
+
+        <!-- Slide 8: AI Integration -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>AI Integration Framework <span class="complete">✓ Complete</span></h2>
+                <p class="subtitle">Data-Driven ML Model, Not Rules</p>
+                <div class="grid grid-2">
+                    <div>
+                        <h3><span class="complete">✅</span> Completed Implementation</h3>
+                        <div class="card">
+                            <h3>📊 Real mining job, GPU, and share data collection in logs/nonces.jsonl</h3>
+                        </div>
+                        <div class="card">
+                            <h3>🤖 Random Forest ML model trained on historic mining data</h3>
+                        </div>
+                        <div class="card">
+                            <h3>⚡ Real-time nonce range predictions based on GPU stats & difficulty</h3>
+                        </div>
+                        <div class="card">
+                            <h3>🔄 Live AI recommendations with confidence scoring</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <h3><span class="emoji">🔄</span> ML Pipeline</h3>
+                        <div class="card">
+                            <strong>1. Data Collection</strong><br>
+                            Miner logs all attempts, stats, and share results
+                        </div>
+                        <div class="card">
+                            <strong>2. Model Training</strong><br>
+                            train.py processes JSONL and trains Random Forest on 5+ variables
+                        </div>
+                        <div class="card">
+                            <strong>3. Real-time Prediction</strong><br>
+                            ai-service.py loads model and predicts nonce range success likelihood
+                        </div>
+                        <div class="card">
+                            <strong>4. Dashboard Integration</strong><br>
+                            Live recommendations, confidence, and stats displayed
+                        </div>
+                    </div>
+                </div>
+                <img src="public/lovable-uploads/f103d373-752b-459e-ae03-7759fa953482.png" alt="AI Nonce Insights Dashboard" class="screenshot">
+                <p style="color: #22d3ee; font-weight: 500;">Live AI Nonce Insights with 95% Confidence</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Progress Summary -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Progress Summary</h2>
+                <p class="subtitle">ErgoHack 10 Achievements</p>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>Node Manager + Ergo Node Deployment</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>GPU Monitoring with nvidia-smi integration</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>CUDA mining kernel development</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon partial">⚠</span>
+                        <span>Pool mining with Stratum protocol</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>Data-driven AI optimization (Random Forest)</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>Web UI Dashboard</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon complete">✓</span>
+                        <span>AI Feedback Loop with live recommendations</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon partial">⚠</span>
+                        <span>Share submission optimization</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="status-icon incomplete">✗</span>
+                        <span>Advanced overclocking automation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Final -->
+        <div class="slide">
+            <div class="slide-content">
+                <img src="public/lovable-uploads/beed117c-2d72-4a61-9235-bb0ced3d3258.png" alt="Cortex Logo" class="logo">
+                <h2>Thank You</h2>
+                <p class="description">Cortex represents the next evolution in cryptocurrency mining—combining transparency, AI optimization, and community collaboration for ErgoHack 10.</p>
+                
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>🎯 Innovation</h3>
+                        <p>AI-driven optimization pushing mining efficiency forward</p>
+                    </div>
+                    <div class="card">
+                        <h3>📱 Open Source</h3>
+                        <p>Fully transparent with community auditing and collaboration</p>
+                        <a href="https://github.com/orgs/Cortex-Miner/repositories" target="_blank" style="color: #22d3ee; text-decoration: underline;">
+                            github.com/orgs/Cortex-Miner/repositories
+                        </a>
+                    </div>
+                    <div class="card">
+                        <h3>👥 Community</h3>
+                        <p>Built by miners, for miners, advancing the ecosystem</p>
+                    </div>
+                </div>
+
+                <div class="donation-box">
+                    <h3 style="color: #ef4444; margin-bottom: 1rem;">❤️ Donations</h3>
+                    <p style="margin-bottom: 0.5rem;">ERG Address:</p>
+                    <div class="donation-address">
+                        9h3dCuaU9BkyriZi2EG4xDagckZ1vGiT8xpXwdvvGtWkH9FnhgZ
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #22d3ee; margin-bottom: 1rem;">ErgoHack 10 Submission</p>
+                    <p style="color: #64748b;">Project by Arohbe</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()">❮</button>
+        <div class="slide-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+            <span class="dot" onclick="currentSlide(10)"></span>
+        </div>
+        <button class="nav-btn" onclick="nextSlide()">❯</button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="counter">
+        <span id="slideCounter">1 / 10</span>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        Use ← → keys to navigate
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        const totalSlides = 10;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n > totalSlides) slideIndex = 1;
+            if (n < 1) slideIndex = totalSlides;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+            
+            document.getElementById('slideCounter').textContent = `${slideIndex} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex += 1);
+        }
+
+        function prevSlide() {
+            showSlide(slideIndex -= 1);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(slideIndex);
+    </script>
+</body>
+</html>
