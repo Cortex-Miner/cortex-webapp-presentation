@@ -27,7 +27,7 @@ const ProgressSummarySlide = () => {
       status: 'complete',
       icon: AlertTriangle,
       text: "Pool mining with Stratum protocol",
-      color: "text-green-400"
+      color: "text-yellow-400"
     },
     {
       status: 'complete',
